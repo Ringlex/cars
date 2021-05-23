@@ -14,11 +14,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final fetchCarData = Provider.of<Cars>(context);
+    fetchCarData.fetchCars();
+    fetchCarData.fetchPeople();
     final carItems = Provider.of<Cars>(context).items;
     final owners = Provider.of<Cars>(context).people;
 
     final heightSize = MediaQuery.of(context).size.height;   //get max height of screen
     final widthSize = MediaQuery.of(context).size.width;     // get max width of screen
+
+    print(carItems.toList());
 
     return Scaffold(
       backgroundColor: Color(0xFF222222),
@@ -62,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          
         ],
       ),
     );
