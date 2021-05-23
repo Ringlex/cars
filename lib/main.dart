@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
      providers: [
         ChangeNotifierProvider.value(
           value: Cars(),
-        ),],
+        ),
+        ],
           child: MaterialApp(
         title: 'Cars',
         theme: ThemeData(
