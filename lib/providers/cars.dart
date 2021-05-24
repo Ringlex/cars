@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:cars/api/iteo.dart';
 import 'package:cars/providers/person_list.dart';
@@ -47,7 +47,7 @@ class Cars with ChangeNotifier {
       _itemCar = loadedCars;
       print(_itemCar[0].brand);
 
-      //notifyListeners();
+      notifyListeners();
     } catch (error) {
       print(error);
       throw (error);
@@ -77,7 +77,7 @@ class Cars with ChangeNotifier {
 
       _itemPerson = loadedPeople;
       print(_itemPerson[0].lastName);
-     // notifyListeners();
+      notifyListeners();
     } catch (error) {
       print(error);
       throw (error);

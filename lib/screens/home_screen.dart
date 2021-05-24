@@ -1,4 +1,6 @@
 import 'package:cars/providers/cars.dart';
+import 'package:cars/widgets/cars_grid.dart';
+import 'package:cars/widgets/grid_car_item.dart';
 import 'package:cars/widgets/language_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,19 +15,34 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final fetchCarData = Provider.of<Cars>(context);
-    fetchCarData.fetchCars();
+
     fetchCarData.fetchPeople();
     final carItems = Provider.of<Cars>(context).items;
-    final owners = Provider.of<Cars>(context).people;
+    //final owners = Provider.of<Cars>(context).people;
 
-    final heightSize = MediaQuery.of(context).size.height;   //get max height of screen
-    final widthSize = MediaQuery.of(context).size.width;     // get max width of screen
+    final heightSize =
+        MediaQuery.of(context).size.height; //get max height of screen
+    final widthSize =
+        MediaQuery.of(context).size.width; // get max width of screen
 
     print(carItems.toList());
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+      ),
       backgroundColor: Color(0xFF222222),
       body: Column(
         children: [
@@ -62,12 +79,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Positioned(
                   top: heightSize * .23,
-                  left:  widthSize * .8,
-                  child: LanguageSwitch()),
+                  left: widthSize * .8,
+                  child: LanguageSwitch(),
+                ),
               ],
             ),
           ),
-          
+          CarsGrid(),
         ],
       ),
     );
