@@ -17,6 +17,9 @@ class Cars with ChangeNotifier {
 
   List<PersonList> _itemPerson = [];
 
+  String owner;
+  List<String> owners = [];
+
   List<PersonList> get people {
     return [..._itemPerson];
   }
@@ -66,6 +69,7 @@ class Cars with ChangeNotifier {
       final List<PersonList> loadedPeople = [];
 
       for (int i = 0; i < fetchedPeople.length; i++) {
+        //owners.add(fetchedPeople[i]['first_name']+' '+fetchedPeople[i]['last_name']);
         loadedPeople.add(PersonList(
           id: fetchedPeople[i]['_id'],
           firstName: fetchedPeople[i]['first_name'],
@@ -76,11 +80,41 @@ class Cars with ChangeNotifier {
       }
 
       _itemPerson = loadedPeople;
+      //getOwners();
       print(_itemPerson[0].lastName);
       notifyListeners();
     } catch (error) {
       print(error);
       throw (error);
+    }
+  }
+
+  Future<void> getOwners() async {
+    final List<String> loadedOwners = [];
+    for (int i = 0; i < _itemPerson.length; i++) {
+      loadedOwners.add(_itemPerson[i].firstName.toString() +
+          ' ' +
+          _itemPerson[i].lastName.toString());
+      owners = loadedOwners;
+      notifyListeners();
+    }
+  }
+
+  Future<void> addNewCar(Car car) async {
+    try {
+      await _itemCar.add(Car(
+        brand: car.brand,
+        model: car.model,
+        year: car.year,
+        registration: car.registration,
+        ownerId: car.ownerId,
+        color: car.color,
+        id: car.id,
+      ));
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
     }
   }
 }

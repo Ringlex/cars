@@ -1,4 +1,5 @@
 import 'package:cars/providers/cars.dart';
+import 'package:cars/screens/add_car.dart';
 import 'package:cars/widgets/cars_grid.dart';
 import 'package:cars/widgets/grid_car_item.dart';
 import 'package:cars/widgets/language_switch.dart';
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final fetchCarData = Provider.of<Cars>(context);
 
     fetchCarData.fetchPeople();
+    fetchCarData.getOwners();
     final carItems = Provider.of<Cars>(context).items;
     //final owners = Provider.of<Cars>(context).people;
 
@@ -36,7 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => AddCar()));
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
