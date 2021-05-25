@@ -28,12 +28,15 @@ class _TextFieldsState extends State<TextFields> {
 
   String valueChoose = 'Libby Predovic';
   List<String> ownerList = [];
+  
+  String idOwner = '';
 
   void initState() {
     
     Future.delayed(Duration.zero,(){
       final fetchCarData = Provider.of<Cars>(context, listen: false);
       fetchCarData.getOwners();
+      
     });
     super.initState();
   }
@@ -56,7 +59,7 @@ class _TextFieldsState extends State<TextFields> {
         id: Random(20).toString(),
         brand: brandController.text.toString(),
         model: modelController.text.toString(),
-        ownerId: valueChoose.toString(),
+        ownerId: idOwner,
         registration: registrationNumberController.text.toString(),
         year: yearController.text.toString(),
         color: currentColor
@@ -77,6 +80,7 @@ class _TextFieldsState extends State<TextFields> {
   Widget build(BuildContext context) {
 
     final owners = Provider.of<Cars>(context).owners;
+    final peopleList = Provider.of<Cars>(context).people;
     ownerList = owners;
     print(ownerList);
  
@@ -420,14 +424,15 @@ class _TextFieldsState extends State<TextFields> {
                         modelController.text.isEmpty ||
                         yearController.text.isEmpty ||
                         registrationNumberController.text.isEmpty)
-                    // ignore: todo
-                    //TODO display some info about check your inputs while button is diasbled!
                     ? null //buttonReady = false
                     : () async {
                         setState(() {
                           isLoading = true;
                           buttonReady = true;
                         });
+                          final owner = valueChoose.split(" ");
+                          var data = peopleList.indexWhere((prod) => prod.firstName == owner[0]);
+                          idOwner = peopleList[data].id.toString();
                         _addCar().then((value) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

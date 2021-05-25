@@ -1,7 +1,6 @@
 import 'package:cars/providers/cars.dart';
 import 'package:cars/screens/add_car.dart';
-import 'package:cars/widgets/cars_grid.dart';
-import 'package:cars/widgets/grid_car_item.dart';
+import 'package:cars/widgets/cars_list.dart';
 import 'package:cars/widgets/language_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,17 +14,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   void initState() {
-    
     Future.delayed(Duration.zero,(){
       final fetchCarData = Provider.of<Cars>(context, listen: false);
       fetchCarData.fetchCars();
       fetchCarData.fetchPeople();
       fetchCarData.getOwners();
     });
-
-    
     super.initState();
   }
 
@@ -37,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         MediaQuery.of(context).size.height; //get max height of screen
     final widthSize =
         MediaQuery.of(context).size.width; // get max width of screen
+    final isEng = Provider.of<Cars>(context,).isEng;
 
     print(carItems);
 
@@ -77,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Positioned(
                   top: heightSize * .05,
                   left: widthSize * .06,
-                  child: Text(
+                  child: Text( isEng ? 'Car' :
                     'Auto',
                     style: GoogleFonts.lobster(
                       fontSize: 50,
@@ -94,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          CarsGrid(),
+          CarsList(),
         ],
       ),
     );

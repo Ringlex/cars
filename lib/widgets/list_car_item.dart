@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GridCarItem extends StatelessWidget {
+class ListCarItem extends StatelessWidget {
   final String id;
   final String brand;
   final String model;
@@ -12,7 +12,7 @@ class GridCarItem extends StatelessWidget {
   final String lat;
   final String lng;
 
-  GridCarItem({
+  ListCarItem({
     this.id,
     this.brand,
     this.model,

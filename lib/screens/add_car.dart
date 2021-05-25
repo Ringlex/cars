@@ -1,3 +1,4 @@
+import 'package:cars/widgets/language_switch.dart';
 import 'package:cars/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,6 @@ class AddCar extends StatelessWidget {
           padding: const EdgeInsets.only(left: 15.0),
           child: Text(
             'Add car',
-            
             style: GoogleFonts.quicksand(
               fontSize: 40,
               color: Colors.white,
@@ -32,6 +32,12 @@ class AddCar extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right:20.0, top: 5.0),
+            child: LanguageSwitch(),
+          ),
+        ],
       ),
       body: TextFields(),
     );
