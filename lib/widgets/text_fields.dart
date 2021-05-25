@@ -1,7 +1,10 @@
 import 'dart:math';
 
+import 'package:cars/model/place.dart';
 import 'package:cars/providers/car.dart';
 import 'package:cars/providers/cars.dart';
+import 'package:cars/widgets/location_input.dart';
+import 'package:cars/widgets/location_map.dart';
 import 'package:cars/widgets/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -66,7 +69,9 @@ class _TextFieldsState extends State<TextFields> {
             .toString()
             .split('(0x')[1]
             .split(')')[0]
-            .replaceAll('ff', '#'));
+            .replaceAll('ff', '#'),
+            lat: latitude.toString(),
+            lng: longitude.toString());
     await Provider.of<Cars>(context, listen: false)
         .addNewCar(newCar)
         .then((void nothing) {
@@ -74,6 +79,21 @@ class _TextFieldsState extends State<TextFields> {
         isLoading = false;
       });
     }).catchError((e) => print(e));
+  }
+
+  String localization;
+  PlaceLocation _pickedLocation;
+  double latitude = 0;
+  double longitude = 0;
+
+  Future<void> _selectPlace(double lat, double lng) async {
+    _pickedLocation = PlaceLocation(latitude: lat, longitude: lng);
+    String place = await LocationMap.getPlaceAddress(lat, lng);
+    setState(() {
+      //localization = place;
+      latitude = lat;
+      longitude = lng;
+    });
   }
 
   @override
@@ -402,6 +422,14 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           //Here should be location widget
+          Container(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.03,
+              ),
+              //height: MediaQuery.of(context).size.height * 0.35,
+              width: MediaQuery.of(context).size.width * 0.87,
+              child: LocationInput(_selectPlace),
+            ),
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Container(
@@ -431,7 +459,7 @@ class _TextFieldsState extends State<TextFields> {
                           buttonReady = true;
                         });
                           final owner = valueChoose.split(" ");
-                          var data = peopleList.indexWhere((prod) => prod.firstName == owner[0]);
+                          var data = peopleList.indexWhere((item) => item.firstName == owner[0]);
                           idOwner = peopleList[data].id.toString();
                         _addCar().then((value) {
                           ScaffoldMessenger.of(context).showSnackBar(

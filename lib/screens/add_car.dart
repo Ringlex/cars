@@ -1,9 +1,18 @@
+
 import 'package:cars/widgets/language_switch.dart';
 import 'package:cars/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddCar extends StatelessWidget {
+class AddCar extends StatefulWidget {
+
+  @override
+  _AddCarState createState() => _AddCarState();
+}
+
+class _AddCarState extends State<AddCar> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
