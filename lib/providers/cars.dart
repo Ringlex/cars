@@ -19,6 +19,7 @@ class Cars with ChangeNotifier {
 
   String owner;
   List<String> owners = [];
+  bool isEng = false;
 
   List<PersonList> get people {
     return [..._itemPerson];
@@ -116,5 +117,10 @@ class Cars with ChangeNotifier {
       print(error);
       throw error;
     }
+  }
+
+  void changeLanguage(bool state){
+      isEng = state;
+      notifyListeners();
   }
 }
