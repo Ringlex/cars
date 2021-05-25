@@ -28,6 +28,16 @@ class _TextFieldsState extends State<TextFields> {
 
   String valueChoose = 'Libby Predovic';
   List<String> ownerList = [];
+
+  void initState() {
+    
+    Future.delayed(Duration.zero,(){
+      final fetchCarData = Provider.of<Cars>(context, listen: false);
+      fetchCarData.getOwners();
+    });
+    super.initState();
+  }
+
   @override
   void dispose() {
     modelController.dispose();
@@ -65,11 +75,11 @@ class _TextFieldsState extends State<TextFields> {
 
   @override
   Widget build(BuildContext context) {
-    final owners = Provider.of<Cars>(context, listen: false).owners;
+
+    final owners = Provider.of<Cars>(context).owners;
     ownerList = owners;
     print(ownerList);
-    //valueChoose = ' cos';
-    //valueChoose = ownerList[0];
+ 
     return SingleChildScrollView(
       child: Align(
         alignment: Alignment.topCenter,
