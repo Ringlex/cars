@@ -17,24 +17,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    
+    Future.delayed(Duration.zero,(){
+      final fetchCarData = Provider.of<Cars>(context, listen: false);
+      fetchCarData.fetchCars();
+      fetchCarData.fetchPeople();
+      fetchCarData.getOwners();
+    });
+
+    
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final fetchCarData = Provider.of<Cars>(context);
-
-    fetchCarData.fetchPeople();
-    fetchCarData.getOwners();
-    final carItems = Provider.of<Cars>(context).items;
-    //final owners = Provider.of<Cars>(context).people;
-
+    
+    final carItems = Provider.of<Cars>(context,).items;
     final heightSize =
         MediaQuery.of(context).size.height; //get max height of screen
     final widthSize =
         MediaQuery.of(context).size.width; // get max width of screen
 
-    print(carItems.toList());
+    print(carItems);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
