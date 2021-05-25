@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/cars.dart';
 
 class LanguageSwitch extends StatefulWidget {
   @override
@@ -8,29 +11,40 @@ class LanguageSwitch extends StatefulWidget {
 class _LanguageSwitchState extends State<LanguageSwitch> {
   @override
   Widget build(BuildContext context) {
+    final isEng = Provider.of<Cars>(context).isEng;
     return Container(
       height: 50,
       width: 70,
       child: Row(
         children: [
-          Container(
-            child: Text(
-              'PL',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: (){
+              Provider.of<Cars>(context, listen: false).changeLanguage(false);
+            },
+                      child: Container(
+              child: Text(
+                'PL',
+                style: TextStyle(
+                  color: !isEng ? Colors.white : Colors.grey,
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
           SizedBox(width: 10,),
-          Container(
-            child: Text(
-              'EN',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: (){
+              Provider.of<Cars>(context, listen: false).changeLanguage(true);
+            },
+                      child: Container(
+              child: Text(
+                'EN',
+                style: TextStyle(
+                  color: isEng ? Colors.white :Colors.grey,
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           )
