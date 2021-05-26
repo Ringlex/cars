@@ -103,6 +103,7 @@ class _TextFieldsState extends State<TextFields> {
     final peopleList = Provider.of<Cars>(context).people;
     ownerList = owners;
     print(ownerList);
+    final isEng = Provider.of<Cars>(context,).isEng;
  
     return SingleChildScrollView(
       child: Align(
@@ -145,7 +146,7 @@ class _TextFieldsState extends State<TextFields> {
                             color: Colors.transparent,
                           ),
                         ),
-                        hintText: 'Brand',
+                        hintText: isEng ?'Brand' : 'Marka',
                         hintStyle: TextStyle(
                           color: Color(0xFF8E8E8E),
                           fontSize: 18,
@@ -242,7 +243,7 @@ class _TextFieldsState extends State<TextFields> {
                             color: Colors.transparent,
                           ),
                         ),
-                        hintText: 'Year',
+                        hintText: isEng ? 'Year of production' : 'Rok produkcji',
                         hintStyle: TextStyle(
                           color: Color(0xFF8E8E8E),
                           fontSize: 18,
@@ -277,7 +278,7 @@ class _TextFieldsState extends State<TextFields> {
                     validator: validateText,
                     //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
 
                         //filled: true,
@@ -290,7 +291,7 @@ class _TextFieldsState extends State<TextFields> {
                             color: Colors.transparent,
                           ),
                         ),
-                        hintText: 'Registration number',
+                        hintText: isEng ? 'Registration number' : 'Numer rejestracyjny',
                         hintStyle: TextStyle(
                           color: Color(0xFF8E8E8E),
                           fontSize: 18,
@@ -308,7 +309,7 @@ class _TextFieldsState extends State<TextFields> {
               child: Row(
                 children: [
                   Text(
-                    'Select color: ',
+                    isEng ? 'Select color: ' : 'Wybierz kolor ',
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
                       color: Colors.white,
@@ -328,7 +329,7 @@ class _TextFieldsState extends State<TextFields> {
                                   .split(')')[0]
                                   .replaceAll('ff', '#'));
                               return AlertDialog(
-                                title: const Text('Pick a color!'),
+                                title:  Text(isEng ? 'Pick a color!': 'Wybierz kolor'),
                                 content: SingleChildScrollView(
                                   child: ColorPicker(
                                     pickerColor: pickerColor,
@@ -339,7 +340,7 @@ class _TextFieldsState extends State<TextFields> {
                                 ),
                                 actions: <Widget>[
                                   FlatButton(
-                                    child: const Text('Got it'),
+                                    child:  Text(isEng ? 'Got it' : 'Mam to'),
                                     onPressed: () {
                                       setState(
                                           () => currentColor = pickerColor);
@@ -393,7 +394,7 @@ class _TextFieldsState extends State<TextFields> {
                       size: 35,
                     ),
                     hint: Text(
-                      '   Select owner                 ',
+                      isEng ? '   Select owner                 ' : '  Wybierz właściciela     ',
                       style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF8E8E8E),
@@ -463,8 +464,8 @@ class _TextFieldsState extends State<TextFields> {
                           idOwner = peopleList[data].id.toString();
                         _addCar().then((value) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Car has beed added!'),
+                             SnackBar(
+                              content: Text(isEng ? 'Car has beed added!' : 'Samochód został dodany!'),
                             ),
                           );
                         }); //Addres field mus be passed as argument!!!
@@ -472,7 +473,7 @@ class _TextFieldsState extends State<TextFields> {
                 child: isLoading
                     ? CircularProgressIndicator()
                     : Text(
-                        'Add car',
+                        isEng ? 'Add car' : 'Dodaj auto',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

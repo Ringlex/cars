@@ -1,5 +1,7 @@
+import 'package:cars/providers/cars.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ListCarItem extends StatelessWidget {
   final String id;
@@ -26,6 +28,7 @@ class ListCarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isEng = Provider.of<Cars>(context,).isEng;
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Container(
@@ -124,8 +127,8 @@ class ListCarItem extends StatelessWidget {
                           ),
                           SizedBox(height: 5,),
                           Row(children: [
-                            Text(
-                                'Registration num.: ',
+                            Text(isEng ?
+                                'Registration num.: ' : 'Nr rejestracyjny: ',
                                 style: GoogleFonts.quicksand(
                                     color: Colors.white,
                                     fontSize: 18,

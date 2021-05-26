@@ -1,8 +1,10 @@
 
+import 'package:cars/providers/cars.dart';
 import 'package:cars/widgets/language_switch.dart';
 import 'package:cars/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class AddCar extends StatefulWidget {
 
@@ -15,6 +17,7 @@ class _AddCarState extends State<AddCar> {
 
   @override
   Widget build(BuildContext context) {
+    final isEng = Provider.of<Cars>(context,).isEng;
     return Scaffold(
       backgroundColor: Color(0xFF222222),
       appBar: AppBar(
@@ -32,8 +35,8 @@ class _AddCarState extends State<AddCar> {
         ),
         title: Padding(
           padding: const EdgeInsets.only(left: 15.0),
-          child: Text(
-            'Add car',
+          child: Text( isEng ? 
+            'Add car' : "Dodaj auto",
             style: GoogleFonts.quicksand(
               fontSize: 40,
               color: Colors.white,

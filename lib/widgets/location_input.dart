@@ -81,8 +81,8 @@ class _LocationInputState extends State<LocationInput> {
             color:Color(0xFF565656),
           ),
           child: _previewImageUrl == null
-              ? Text(
-                  'No location chosen',
+              ? Text(isEng ?
+                  'No location chosen' : 'Brak lokalizacji',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFCECECE),
@@ -128,8 +128,8 @@ class _LocationInputState extends State<LocationInput> {
                       size: 16,
                       //Colors.white54,
                     ),
-                    label: Text(
-                      'Current Location',
+                    label: Text(isEng ?
+                      'Current Location' : 'Aktualne miejsce',
                       style: TextStyle(
                          
                         color: Colors.white,
@@ -163,8 +163,8 @@ class _LocationInputState extends State<LocationInput> {
                       size: 18,
                       //Colors.white54,
                     ),
-                    label: Text(
-                      'Select on Map',
+                    label: Text(isEng ? 
+                      'Select on Map' : 'Wybierz na mapie',
                       style: TextStyle(
                         color: Colors.white,
                         

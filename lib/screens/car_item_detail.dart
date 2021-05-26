@@ -49,7 +49,7 @@ class _CarItemDetailState extends State<CarItemDetail> {
 
   @override
   Widget build(BuildContext context) {
-  
+    final isEng = Provider.of<Cars>(context,).isEng;
     return Scaffold(
       backgroundColor: Color(0xFF222222),
       appBar: AppBar(
@@ -85,8 +85,8 @@ class _CarItemDetailState extends State<CarItemDetail> {
               //border: Border.all(width: 0, color: Colors.grey),
             ),
             child: _previewImageUrl == null
-                ? Text(
-                    'No Location Available',
+                ? Text(isEng ? 
+                    'No Location Available' : 'Brak lokalizacji',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black),
                   )
@@ -124,8 +124,8 @@ class _CarItemDetailState extends State<CarItemDetail> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Row(
                 children: [
-                  Text(
-                    'Owner: ',
+                  Text(isEng ? 
+                    'Owner: ' : 'Właściciel: ',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -146,8 +146,8 @@ class _CarItemDetailState extends State<CarItemDetail> {
               child: Row(
                 children: [
                   
-                  Text(
-                    'Brand: ',
+                  Text(isEng ? 
+                    'Brand: ' : 'Marka: ',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -188,8 +188,8 @@ class _CarItemDetailState extends State<CarItemDetail> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Row(
                 children: [
-                  Text(
-                    'Year of production: ',
+                  Text(isEng ? 
+                    'Year of production: ' : 'Rok produkcji: ',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
