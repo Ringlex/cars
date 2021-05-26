@@ -1,13 +1,15 @@
+import 'package:cars/providers/cars.dart';
 import 'package:cars/widgets/language_switch.dart';
 import 'package:cars/widgets/location_map.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class CarItemDetail extends StatefulWidget {
   final String id;
   final String brand;
   final String model;
-  final String ownerId;
+  final String owner;
   final String year;
   final String color;
   final String registration;
@@ -18,7 +20,7 @@ class CarItemDetail extends StatefulWidget {
       {this.id,
       this.brand,
       this.model,
-      this.ownerId,
+      this.owner,
       this.year,
       this.color,
       this.registration,
@@ -32,6 +34,9 @@ class CarItemDetail extends StatefulWidget {
 class _CarItemDetailState extends State<CarItemDetail> {
 
   String _previewImageUrl;
+
+  
+
   @override
   void initState() {
     final staticMapImageUrl = LocationMap.generateLocationPreviewImage(
@@ -44,6 +49,7 @@ class _CarItemDetailState extends State<CarItemDetail> {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       backgroundColor: Color(0xFF222222),
       appBar: AppBar(
@@ -127,7 +133,7 @@ class _CarItemDetailState extends State<CarItemDetail> {
                     ),
                   ),
                   SizedBox(width: 10,),
-                  Text(widget.brand,
+                  Text(widget.owner,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,

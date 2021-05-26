@@ -123,4 +123,14 @@ class Cars with ChangeNotifier {
       isEng = state;
       notifyListeners();
   }
+
+  String getOwner(String id){
+    
+    int data = _itemPerson.indexWhere((item) => item.id == id);
+    print(_itemPerson.length.toString());
+    if(_itemPerson[data].firstName == null){
+      return 'Information is not available';
+    }
+    else return _itemPerson[data].firstName + ' ' + _itemPerson[data].lastName;
+  }
 }

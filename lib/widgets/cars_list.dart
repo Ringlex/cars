@@ -10,10 +10,14 @@ class CarsList extends StatefulWidget {
 }
 
 class _CarsListState extends State<CarsList> {
+
+  String ownerName = '';
+
   @override
   Widget build(BuildContext context) {
     final carItems = Provider.of<Cars>(context).items;
-
+    final data = Provider.of<Cars>(context);
+    
     print(carItems.length.toString());
     return Expanded(
       child: Container(
@@ -23,11 +27,13 @@ class _CarsListState extends State<CarsList> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
+                ownerName = data.getOwner(carItems[index].ownerId,);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => CarItemDetail(
                           id: carItems[index].id,
                           model: carItems[index].model,
                           brand: carItems[index].brand,
+                          owner: ownerName,
                           registration: carItems[index].registration,
                           year: carItems[index].year.substring(0, 4),
                           lat: carItems[index].lat,
