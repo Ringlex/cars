@@ -1,4 +1,5 @@
 import 'package:cars/providers/cars.dart';
+import 'package:cars/providers/connection_internet.dart';
 import 'package:cars/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
      providers: [
         ChangeNotifierProvider.value(
           value: Cars(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ConnectionInternet(),
         ),
         ],
           child: MaterialApp(
