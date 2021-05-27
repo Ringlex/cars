@@ -1,7 +1,9 @@
 import 'package:cars/providers/cars.dart';
+import 'package:cars/providers/connection_internet.dart';
 import 'package:cars/screens/add_car.dart';
 import 'package:cars/widgets/cars_list.dart';
 import 'package:cars/widgets/language_switch.dart';
+import 'package:cars/widgets/no_internet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,35 +16,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
-    Future.delayed(Duration.zero,(){
-      final fetchCarData = Provider.of<Cars>(context, listen: false);
-      fetchCarData.fetchCars();
-      fetchCarData.fetchPeople();
-      fetchCarData.getOwners();
-    });
+    Provider.of<ConnectionInternet>(context, listen: false).checkConnection();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     
-    final carItems = Provider.of<Cars>(context,).items;
+    final isEng = Provider.of<Cars>(context).isEng;
     final heightSize =
         MediaQuery.of(context).size.height; //get max height of screen
     final widthSize =
         MediaQuery.of(context).size.width; // get max width of screen
-    final isEng = Provider.of<Cars>(context,).isEng;
-
-    print(carItems);
+    
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => AddCar()));
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context) => AddCar()));
         },
         child: Icon(
           Icons.add,
@@ -75,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Positioned(
                   top: heightSize * .05,
                   left: widthSize * .06,
-                  child: Text( isEng ? 'Car' :
-                    'Auto',
+                  child: Text(
+                    isEng ? 'Car' : 'Auto',
                     style: GoogleFonts.lobster(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
@@ -92,9 +86,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          CarsList(),
+          page(),
         ],
       ),
+    );
+  }
+
+  Widget page() {
+    return Consumer<ConnectionInternet>(
+      builder: (context, model, child) {
+        if (model.isOnline != null) {
+          return model.isOnline ? CarsList() : NoInternet();
+        }
+        return Container(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
     );
   }
 }
