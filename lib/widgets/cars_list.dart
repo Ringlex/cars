@@ -13,6 +13,19 @@ class _CarsListState extends State<CarsList> {
 
   String ownerName = '';
 
+   void initState() {
+    
+    Future.delayed(Duration.zero,(){
+      final fetchCarData = Provider.of<Cars>(context, listen: false);
+      fetchCarData.fetchCars();
+      fetchCarData.fetchPeople();
+      fetchCarData.getOwners();
+      
+      
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final carItems = Provider.of<Cars>(context).items;

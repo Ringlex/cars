@@ -111,7 +111,30 @@ class Cars with ChangeNotifier {
         ownerId: car.ownerId,
         color: car.color,
         id: car.id,
+        lat: car.lat,
+        lng: car.lng,
       ));
+
+      var carUrl = 'https://iteorecruitment-591c.restdb.io/rest/car-list';
+
+      // var response = await http.post(
+      //   carUrl,
+      //   headers: {
+      //      'x-apikey': '$API_KEY',
+      //      'Content-Type': 'application/json',
+      //   },
+      //   body: json.encode({
+      //     'brand' : car.brand,
+      //     'model' : car.model,
+      //     'color' : car.color,
+      //     'registration' : car.registration,
+      //     'year' : car.year,
+      //     'ownerId' : car.ownerId,
+      //     'lat' : car.lat,
+      //     'lng' : car.lng,
+      //   })
+      //);
+
       notifyListeners();
     } catch (error) {
       print(error);
@@ -129,7 +152,7 @@ class Cars with ChangeNotifier {
     int data = _itemPerson.indexWhere((item) => item.id == id);
     print(_itemPerson.length.toString());
     if(_itemPerson[data].firstName == null){
-      return 'Information is not available';
+      return isEng? 'Information is not available' : 'Informacja niedostępna';
     }
     else return _itemPerson[data].firstName + ' ' + _itemPerson[data].lastName;
   }
