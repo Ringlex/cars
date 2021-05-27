@@ -23,11 +23,11 @@ String validateYear(String value) {
   if (double.tryParse(value) == null) {
     return 'Please enter a valid number.';
   }
-  if (double.parse(value) <= 0) {
-    return 'Please enter a char greater than zero .';
+  if (int.parse(value) <= 1900) {
+    return 'Please enter a char greater than 1900.';
   }
-  if (double.parse(value) > 4) {
-    return 'Please enter a char in range 0-4';
+  if (int.parse(value) > 2100) {
+    return 'Please enter a year in range 1900 - 2100.';
   }
   return null;
 }
