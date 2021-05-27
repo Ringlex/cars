@@ -35,6 +35,7 @@ class _CarsListState extends State<CarsList> {
     return Expanded(
       child: Container(
         child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           padding: const EdgeInsets.all(15),
           itemCount: carItems.length,
           itemBuilder: (context, index) {

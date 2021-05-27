@@ -133,7 +133,7 @@ class _TextFieldsState extends State<TextFields> {
                     validator: validateText,
                     //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
 
                         //filled: true,
@@ -181,7 +181,7 @@ class _TextFieldsState extends State<TextFields> {
                     validator: validateText,
                     //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
 
                         //filled: true,
@@ -230,7 +230,7 @@ class _TextFieldsState extends State<TextFields> {
                     validator: validateYear,
                     //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
 
                         //filled: true,
