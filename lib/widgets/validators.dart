@@ -8,7 +8,7 @@ String validateText(String value) {
 
 String validateRegistration(String value) {
   if (value.isEmpty) {
-    return 'Please enter a description.';
+    return 'Please enter a registration number.';
   }
   if (value.length < 10) {
     return 'Should max 10 characters long.';

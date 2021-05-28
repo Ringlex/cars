@@ -86,7 +86,6 @@ class _LocationInputState extends State<LocationInput> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFCECECE),
-                    //Colors.white54,
                   ),
                 )
               : Container(
@@ -126,14 +125,12 @@ class _LocationInputState extends State<LocationInput> {
                       Icons.location_on,
                       color: Colors.white,
                       size: 16,
-                      //Colors.white54,
                     ),
                     label: Text(isEng ?
                       'Current Location' : 'Aktualne miejsce',
                       style: TextStyle(
                          
                         color: Colors.white,
-                        //Colors.white54,
                       ),
                     ),
                     textColor: Theme.of(context).primaryColor,
@@ -161,14 +158,11 @@ class _LocationInputState extends State<LocationInput> {
                       Icons.map,
                       color: Colors.white,
                       size: 18,
-                      //Colors.white54,
                     ),
                     label: Text(isEng ? 
                       'Select on Map' : 'Wybierz na mapie',
                       style: TextStyle(
                         color: Colors.white,
-                        
-                        //Colors.white54,
                       ),
                     ),
                     textColor: Theme.of(context).accentColor,

@@ -28,7 +28,8 @@ class ListCarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEng = Provider.of<Cars>(context,).isEng;
+    final isEng = Provider.of<Cars>(context).isEng;
+
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Container(
@@ -54,7 +55,6 @@ class ListCarItem extends StatelessWidget {
                   bottomLeft: Radius.circular(30),
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
-                  //bottomRight: Radius.circular(20),
                 ),
               ),
               child: Center(
@@ -81,9 +81,6 @@ class ListCarItem extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.grey[800],
                           borderRadius: BorderRadius.only(
-                            //bottomLeft: Radius.circular(30),
-                            //   topLeft: Radius.circular(10),
-                            //topRight: Radius.circular(10),
                             bottomRight: Radius.circular(10),
                           )),
                     ),
@@ -96,9 +93,7 @@ class ListCarItem extends StatelessWidget {
                           color: Colors.grey[600],
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30),
-                            //   topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
-                            //bottomRight: Radius.circular(10),
                           )),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 15.0, top: 10),
@@ -120,20 +115,23 @@ class ListCarItem extends StatelessWidget {
                                 style: GoogleFonts.quicksand(
                                   color: Colors.white,
                                   fontSize: 22,
-                                  
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5,),
-                          Row(children: [
-                            Text(isEng ?
-                                'Registration num.: ' : 'Nr rejestracyjny: ',
-                                style: GoogleFonts.quicksand(
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                  isEng
+                                      ? 'Registration num.: '
+                                      : 'Nr rejestracyjny: ',
+                                  style: GoogleFonts.quicksand(
                                     color: Colors.white,
                                     fontSize: 18,
-                                    
-                            )),
+                                  )),
                               SizedBox(
                                 width: 5,
                               ),
@@ -142,10 +140,10 @@ class ListCarItem extends StatelessWidget {
                                 style: GoogleFonts.quicksand(
                                   color: Colors.white,
                                   fontSize: 18,
-                                  
                                 ),
                               ),
-                          ],)
+                            ],
+                          )
                         ]),
                       ),
                     ),

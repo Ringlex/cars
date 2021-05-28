@@ -117,23 +117,23 @@ class Cars with ChangeNotifier {
 
       var carUrl = 'https://iteorecruitment-591c.restdb.io/rest/car-list';
 
-      // var response = await http.post(
-      //   carUrl,
-      //   headers: {
-      //      'x-apikey': '$API_KEY',
-      //      'Content-Type': 'application/json',
-      //   },
-      //   body: json.encode({
-      //     'brand' : car.brand,
-      //     'model' : car.model,
-      //     'color' : car.color,
-      //     'registration' : car.registration,
-      //     'year' : car.year,
-      //     'ownerId' : car.ownerId,
-      //     'lat' : car.lat,
-      //     'lng' : car.lng,
-      //   })
-      //);
+      var response = await http.post(
+        carUrl,
+        headers: {
+           'x-apikey': '$API_KEY',
+           'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'brand' : car.brand,
+          'model' : car.model,
+          'color' : car.color,
+          'registration' : car.registration,
+          'year' : car.year,
+          'ownerId' : car.ownerId,
+          'lat' : car.lat,
+          'lng' : car.lng,
+        })
+      );
 
       notifyListeners();
     } catch (error) {

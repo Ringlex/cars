@@ -25,7 +25,6 @@ class _TextFieldsState extends State<TextFields> {
   bool isLoading = false;
   bool buttonReady = false;
 
-  // create some values
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
@@ -33,6 +32,11 @@ class _TextFieldsState extends State<TextFields> {
   List<String> ownerList = [];
   
   String idOwner = '';
+
+  String localization;
+  PlaceLocation _pickedLocation;
+  double latitude = 0;
+  double longitude = 0;
 
   void initState() {
     
@@ -81,10 +85,7 @@ class _TextFieldsState extends State<TextFields> {
     }).catchError((e) => print(e));
   }
 
-  String localization;
-  PlaceLocation _pickedLocation;
-  double latitude = 0;
-  double longitude = 0;
+
 
   Future<void> _selectPlace(double lat, double lng) async {
     _pickedLocation = PlaceLocation(latitude: lat, longitude: lng);
@@ -131,12 +132,9 @@ class _TextFieldsState extends State<TextFields> {
                   child: TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: validateText,
-                    //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
                     style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
-
-                        //filled: true,
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.transparent,
@@ -179,12 +177,9 @@ class _TextFieldsState extends State<TextFields> {
                   child: TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: validateText,
-                    //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
                     style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
-
-                        //filled: true,
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.transparent,
@@ -228,12 +223,9 @@ class _TextFieldsState extends State<TextFields> {
                     keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: validateYear,
-                    //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
                     style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
-
-                        //filled: true,
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.transparent,
@@ -276,12 +268,9 @@ class _TextFieldsState extends State<TextFields> {
                   child: TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: validateText,
-                    //textAlign: TextAlign.start,
                     cursorColor: Colors.black,
                     style: TextStyle(color: Colors.white, fontSize: 17),
                     decoration: InputDecoration(
-
-                        //filled: true,
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.transparent,
@@ -422,12 +411,10 @@ class _TextFieldsState extends State<TextFields> {
               ),
             ),
           ),
-          //Here should be location widget
           Container(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.03,
               ),
-              //height: MediaQuery.of(context).size.height * 0.35,
               width: MediaQuery.of(context).size.width * 0.87,
               child: LocationInput(_selectPlace),
             ),
@@ -453,7 +440,7 @@ class _TextFieldsState extends State<TextFields> {
                         modelController.text.isEmpty ||
                         yearController.text.isEmpty ||
                         registrationNumberController.text.isEmpty)
-                    ? null //buttonReady = false
+                    ? null 
                     : () async {
                         setState(() {
                           isLoading = true;
@@ -468,7 +455,7 @@ class _TextFieldsState extends State<TextFields> {
                               content: Text(isEng ? 'Car has beed added!' : 'Samochód został dodany!'),
                             ),
                           );
-                        }); //Addres field mus be passed as argument!!!
+                        }); 
                       },
                 child: isLoading
                     ? CircularProgressIndicator()

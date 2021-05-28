@@ -27,9 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
     
     final isEng = Provider.of<Cars>(context).isEng;
     final heightSize =
-        MediaQuery.of(context).size.height; //get max height of screen
+        MediaQuery.of(context).size.height; 
     final widthSize =
-        MediaQuery.of(context).size.width; // get max width of screen
+        MediaQuery.of(context).size.width; 
     
 
     return Scaffold(
